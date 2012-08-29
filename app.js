@@ -1,7 +1,8 @@
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , lessMiddleware = require('less-middleware');
 
 var app = express();
 
@@ -13,7 +14,10 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(app.router);
+  app.use(lessMiddleware({
+    src: __dirname + '/public',
+    compress: true
+  }));
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
