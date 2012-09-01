@@ -4,9 +4,9 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+	res.render('index', { title: 'SnippetShare' });
 };
 
 exports.dashboard = function(req, res){
-	res.render('dashboard', { title: 'DashBoard' });
+    res.render('dashboard', { user: req.user });
 };

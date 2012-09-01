@@ -1,7 +1,8 @@
 extends layout
 
 block content
-	h1= title
-	p Welcome to #{title}
-	form(method="link", action="/fbauth")
-		button(type="submit", class="btn") Login
+	.hero-unit
+		h1 SnippetShare
+		p Social Snippet Sharing
+		p
+			a.btn.btn-primary.btn-large(href="/fbauth") Login With Facebook
