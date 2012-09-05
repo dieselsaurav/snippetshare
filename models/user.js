@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 var config = require('../config');
 
-
-
 var db = mongoose.connect(config.development.dbUrl);
 
 var UserSchema = new mongoose.Schema({

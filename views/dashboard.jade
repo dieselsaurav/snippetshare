@@ -1,22 +1,4 @@
 extends layout
 
 block content
-	-	var imgUrl = 'https://graph.facebook.com/' + user.fbId + '/picture';
-	.navbar.navbar-fixed-top
-		.navbar-inner
-			.container-fluid
-				a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
-					span.icon-bar
-					span.icon-bar
-					span.icon-bar
-				a.brand(href="#") SnippetShare
-
-				.btn-group.pull-right
-					span.addon
-						img(src="#{imgUrl}", width="30", hight="30")
-					button.btn.btn-success #{user.name}
-					button.btn.dropdown-toggle.btn-success(data-toggle="dropdown")
-						span.caret
-					ul.dropdown-menu
-						li
-							a(href="/logout") Logout
+	include includes/navbar

@@ -21,11 +21,10 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-
 passport.use(new FacebookStrategy({
-    clientID: config.fb.appID,
-    clientSecret: config.fb.appSecret,
-    callbackURL: config.fb.url + "fbauthed"
+    clientID: config.production.fb.appID,
+    clientSecret: config.production.fb.appSecret,
+    callbackURL: config.production.fb.url + "fbauthed"
   },
   function(accessToken, refreshtoken, profile, done) {
     process.nextTick(function () {
@@ -88,9 +87,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-// app.get('/checkauth', ensureAuthenticated, function(req, res) {
-//   res.send('Authhhhhhh');
-// });
+app.get('/snippet/new', ensureAuthenticated, routes.newSnippet);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
