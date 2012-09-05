@@ -5,6 +5,10 @@
   "scripts": {
     "start": "node app"
   },
+  "engines": {
+    "node": "0.8.x",
+    "npm":  "1.1.x"
+  },
   "dependencies": {
     "express": "*",
     "jade": "*",
@@ -12,6 +16,6 @@
     "passport": "*",
     "passport-facebook": "*",
     "mongoose": "*",
-    "coffee-script": "~1.3.3"
+    "coffee-script": "*"
   }
 }
