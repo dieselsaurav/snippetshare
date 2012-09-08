@@ -1,0 +1,22 @@
+-	var imgUrl = 'https://graph.facebook.com/' + user.fbId + '/picture';
+	.navbar.navbar-fixed-top
+		div.navbar-inner
+			div.container
+				a.btn.btn-navbar.collapsed(data-toggle="collapse", data-target=".nav-collapse")
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.brand(href="/admin/") SnippetShare
+				ul.nav.pull-right
+					li 
+							a(href="/admin/snippets/new") New Snippet
+					li
+						.btn-group.pull-right
+							span.addon
+								img(src="#{imgUrl}", width="30", hight="30")
+							button.btn.btn-primary #{user.name}
+							button.btn.dropdown-toggle.btn-primary(data-toggle="dropdown")
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href="/logout/") Logout

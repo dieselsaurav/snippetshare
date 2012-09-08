@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var config = require('../config');
 
-var db = mongoose.connect(config.development.dbUrl);
+//var db = mongoose.connect(config.development.dbUrl);
 
 var SnippetSchema = new mongoose.Schema({
 	description: String,

@@ -7,7 +7,7 @@
   },
   "engines": {
     "node": "0.8.x",
-    "npm":  "1.1.x"
+    "npm": "1.1.x"
   },
   "dependencies": {
     "express": "*",
@@ -16,6 +16,7 @@
     "passport": "*",
     "passport-facebook": "*",
     "mongoose": "*",
-    "coffee-script": "*"
+    "coffee-script": "*",
+    "express-namespace": "~0.1.1"
   }
 }
