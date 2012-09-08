@@ -21,10 +21,22 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
+var clientID, clientSecret, callbackURL;
+
+if ( app.settings.env === 'production' ) {
+  clientID = config.production.fb.appID,
+  clientSecret = config.production.fb.appSecret,
+  callbackURL = config.production.fb.url + "fbauthed"
+} else if ( app.settings.env === 'development' ) {
+  clientID = config.development.fb.appID,
+  clientSecret = config.development.fb.appSecret,
+  callbackURL = config.development.fb.url + "fbauthed"
+}
+
 passport.use(new FacebookStrategy({
-    clientID: config.production.fb.appID,
-    clientSecret: config.production.fb.appSecret,
-    callbackURL: config.production.fb.url + "fbauthed"
+    clientID: clientID,
+    clientSecret: clientSecret,
+    callbackURL: callbackURL
   },
   function(accessToken, refreshtoken, profile, done) {
     process.nextTick(function () {
@@ -87,10 +99,14 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.get('/snippet/new', ensureAuthenticated, routes.newSnippet);
+// routes for snippets
+
+require('./routes/snippet')(app, ensureAuthenticated);
+
+
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+  console.log("Express server listening on port " + app.get('port') + " in " + app.settings.env);
 });
 
 function ensureAuthenticated(req, res, next) {

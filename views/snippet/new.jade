@@ -3,6 +3,19 @@ extends ../layout
 block content
 	include ../includes/navbar
 	.container
-		.row-fluid
-			h2 Create New Snippet
-			h1 Create Again
+		form.form-horizontal(method="post", action="/snippet")
+			.control-group
+				label.control-label(for="description") Description
+				.controls
+					input(type="text", placeholder="description...", id="description")
+			.control-group
+				label.control-label(for="name") Name
+				.controls
+					input(type="text", placeholder="plain.txt")
+			.control-group
+				label.control-label(for="snippet") Snippet
+				.controls
+					textarea.feild.span8(rows="20")
+			.control-group
+				.controls
+					button.btn.btn-success(type="submit") Save
