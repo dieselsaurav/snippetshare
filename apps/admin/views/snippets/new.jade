@@ -3,19 +3,19 @@ extends ../../../../views/layout
 block content
 	include ../includes/navbar
 	.container
-		form.form-horizontal(method="post", action="/snippet")
+		form.form-horizontal(method="post", action="/admin/snippets")
 			.control-group
 				label.control-label(for="description") Description
 				.controls
-					input(type="text", placeholder="description...", id="description")
+					input(type="text", placeholder="description...", name="description")
 			.control-group
 				label.control-label(for="name") Name
 				.controls
-					input(type="text", placeholder="plain.txt")
+					input(type="text", placeholder="plain.txt", name="name")
 			.control-group
 				label.control-label(for="snippet") Snippet
 				.controls
-					textarea.feild.span8(rows="20")
+					textarea.feild.span8(rows="20", name="snippet")
 			.control-group
 				.controls
 					button.btn.btn-success(type="submit") Save

@@ -17,16 +17,14 @@ routes = function (app) {
 		});
 
 		app.get('/', function (req, res) {
-				res.render(__dirname + '/views/dashboard', {
-				user : req.user 
-			});
+				res.render(__dirname + '/views/dashboard', { user : req.user });
 		});
 
 		app.namespace('/snippets', function () {
 			
 			// List all user snippet
 			app.get('/', function (req, res) {
-				// All snippets
+				res.render(__dirname + '/views/snippets', { user : req.user });
 			});
 
 			app.get('/new', function (req, res) {
@@ -35,7 +33,18 @@ routes = function (app) {
 			});
 
 			app.post('/', function (req, res) {
-				// Save snippet
+
+				snippet = new Snippet();
+				snippet.name = req.body.name;
+				snippet.description = req.body.description;
+				snippet.snippet = req.body.snippet;
+				console.log(snippet);
+				snippet.save(function () {
+					console.log('Snippet Saved');
+					res.redirect('/admin/snippets');
+				});
+
+
 			});
 
 		});

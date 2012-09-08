@@ -1,2 +1,4 @@
 @import "bootstrap.css";
+@import url(http://fonts.googleapis.com/css?family=Inconsolata);
 body{padding-top:60px;padding-bottom:40px;}
+.logo{font-family:'Inconsolata',sans-serif;}
