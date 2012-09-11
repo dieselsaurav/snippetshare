@@ -2,7 +2,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , lessMiddleware = require('less-middleware')
-  , config = require('./config');
+  , config = require('./config')
+  , flash = require('connect-flash');
 
 var passport = require('passport');
 
@@ -18,10 +19,11 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
+  app.use(express.methodOverride());
   app.use(express.session({ secret: 'snippet share' }));
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(express.methodOverride());
+  app.use(flash());
   app.use(lessMiddleware({
     src: __dirname + '/public',
     compress: true
@@ -29,10 +31,14 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
+// locals
+require('./apps/locals')(app);
+
 // Routes
-require('./apps/common/routes')(app);
-require('./apps/authentication/routes')(app);
-require('./apps/admin/routes')(app);
+require('./apps/common')(app);
+require('./apps/authentication')(app);
+require('./apps/admin')(app);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port') + " in " + app.settings.env);

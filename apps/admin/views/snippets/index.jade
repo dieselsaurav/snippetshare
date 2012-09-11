@@ -3,4 +3,28 @@ extends ../../../../views/layout
 block content
 	include ../includes/navbar
 	.container
-		h1 List All Snippets
+		include ../includes/flash
+		if (snippets.length != 0)
+			table.table.table-hover
+				thead
+					tr
+						th Id
+						th Name
+						th Description
+						th Created At
+				tbody
+					each snippet in snippets
+						tr
+							td= snippet.id
+							td= snippet.name
+							td= snippet.description
+							td= snippet.createdAt
+							td
+								form(method="GET", action="/admin/snippets/" + snippet.id + "/edit")
+									button.btn(type="submit") Edit
+							td
+								form(method="POST", action="/admin/snippets/" + snippet.id)
+									input(name= "_method", value= "DELETE", type= "hidden")
+									button.btn(type="submit") Delete
+		else
+			a.btn.btn-primary(href="/admin/snippets/new") Create New Snippet

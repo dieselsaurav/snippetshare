@@ -22,7 +22,7 @@ var routes = function(app) {
   });
 
   passport.deserializeUser(function(id, done) {
-    User.findOne(id, function (err, user) {
+    User.findById(id, function (err, user) {
       done(err, user);
     });
   });
@@ -38,7 +38,6 @@ var routes = function(app) {
       process.nextTick(function () {
         var query = User.findOne({ 'fbId': profile.id });
         query.exec(function (err, oldUser) {
-          console.log(profile);
           if(oldUser) {
             console.log('User: ' + oldUser.name + ' found and logged in!');
             done(null, oldUser);
@@ -61,7 +60,7 @@ var routes = function(app) {
 
   app.get('/fbauth/', passport.authenticate('facebook', { scope: 'email' }));
   app.get('/fbauthed/', passport.authenticate('facebook', { failureRedirect : '/' }), function (req, res) {
-    res.redirect('/admin');
+    res.redirect('/admin/snippets');
   });
   app.get('/logout', function (req, res) {
     req.logOut();
